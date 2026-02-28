@@ -3,7 +3,7 @@
   "name": "VTI 2",
   "category": "Metalizers",
   "model": "",
-  "manufacturer": "",
+  "manufacturer": "Vergason Technology Inc.",
   "serialNumber": "",
   "location": "Department 386",
   "image": "",
@@ -11,5 +11,6 @@
   "parts": [],
   "pinouts": [],
   "documents": [],
-  "troubleshooting": []
+  "troubleshooting": [],
+  "logo": "/images/manufacturers/vti-logo.png"
 }

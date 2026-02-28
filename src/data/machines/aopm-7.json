@@ -3,7 +3,7 @@
   "name": "AOPM 7",
   "category": "Metalizers",
   "model": "",
-  "manufacturer": "",
+  "manufacturer": "Mustang",
   "serialNumber": "",
   "location": "Department 386",
   "image": "",
@@ -11,5 +11,6 @@
   "parts": [],
   "pinouts": [],
   "documents": [],
-  "troubleshooting": []
+  "troubleshooting": [],
+  "logo": "/images/manufacturers/mustang-logo.png"
 }
