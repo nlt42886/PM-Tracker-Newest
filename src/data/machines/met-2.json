@@ -1,11 +1,11 @@
 {
   "id": "met-2",
   "name": "MET 2",
-  "category": "Metalizing",
+  "category": "Metalizers",
   "model": "",
   "manufacturer": "",
   "serialNumber": "",
-  "location": "",
+  "location": "Department 386",
   "image": "",
   "notes": "",
   "parts": [],

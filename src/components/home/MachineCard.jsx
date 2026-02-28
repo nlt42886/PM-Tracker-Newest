@@ -1,17 +1,37 @@
 import { Link } from 'react-router-dom';
-import StatusBadge from '../machine/shared/StatusBadge';
+
+const categoryStyles = {
+  Paint: {
+    header: 'bg-green-50 border-green-100',
+    icon: 'text-green-300 group-hover:text-green-400',
+    accent: 'border-l-4 border-l-green-400',
+  },
+  Metalizers: {
+    header: 'bg-blue-50 border-blue-100',
+    icon: 'text-blue-300 group-hover:text-blue-400',
+    accent: 'border-l-4 border-l-blue-400',
+  },
+};
+
+const defaultStyle = {
+  header: 'bg-slate-100 border-slate-200',
+  icon: 'text-slate-300 group-hover:text-amber-300',
+  accent: '',
+};
 
 export default function MachineCard({ machine }) {
-  const { id, name, model, manufacturer, location } = machine;
+  const { id, name, model, manufacturer, location, category } = machine;
+  const style = categoryStyles[category] ?? defaultStyle;
+  const subtitle = [manufacturer, model].filter(Boolean).join(' \u2014 ');
 
   return (
     <Link
       to={`/machines/${id}`}
-      className="group block bg-white rounded-lg border border-slate-200 shadow-sm hover:shadow-md hover:border-amber-300 transition-all duration-150"
+      className={`group block bg-white rounded-lg border border-slate-200 shadow-sm hover:shadow-md hover:border-amber-300 transition-all duration-150 ${style.accent}`}
     >
-      <div className="bg-slate-100 rounded-t-lg h-36 flex items-center justify-center border-b border-slate-200 group-hover:bg-slate-50 transition-colors">
+      <div className={`rounded-t-lg h-36 flex items-center justify-center border-b transition-colors ${style.header}`}>
         <svg
-          className="w-16 h-16 text-slate-300 group-hover:text-amber-300 transition-colors"
+          className={`w-16 h-16 transition-colors ${style.icon}`}
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"
@@ -29,12 +49,12 @@ export default function MachineCard({ machine }) {
         <h2 className="text-lg font-bold text-slate-800 group-hover:text-amber-700 transition-colors leading-tight">
           {name}
         </h2>
-        <p className="text-sm text-slate-500 mt-0.5">
-          {manufacturer} &mdash; {model}
-        </p>
-        <div className="mt-3">
-          <StatusBadge label={location} />
-        </div>
+        {subtitle && (
+          <p className="text-sm text-slate-500 mt-0.5">{subtitle}</p>
+        )}
+        {location && (
+          <p className="text-xs text-slate-400 mt-2">{location}</p>
+        )}
       </div>
     </Link>
   );
