@@ -1,0 +1,250 @@
+{
+  "id": "cnc-mill-1",
+  "name": "CNC Mill #1",
+  "model": "Haas VF-2",
+  "manufacturer": "Haas Automation",
+  "serialNumber": "3087412",
+  "location": "Bay 3 - North Wall",
+  "image": "",
+  "notes": "Machine underwent full spindle rebuild in January 2025. Coolant system uses Castrol Hysol 3000 at 8% concentration. Do not run above 10,000 RPM until 50-hour break-in is complete.",
+
+  "parts": [
+    {
+      "partNumber": "HA-930-8765",
+      "description": "Spindle Drive Belt",
+      "quantity": 2,
+      "location": "Parts Cabinet B - Drawer 3",
+      "notes": "Replace every 2,000 hours. Check tension monthly."
+    },
+    {
+      "partNumber": "SKF-6206-2RS",
+      "description": "Spindle Bearing (Upper)",
+      "quantity": 1,
+      "location": "Parts Cabinet B - Drawer 4",
+      "notes": "Match-ground pair — always replace both upper and lower together."
+    },
+    {
+      "partNumber": "SKF-6207-2RS",
+      "description": "Spindle Bearing (Lower)",
+      "quantity": 1,
+      "location": "Parts Cabinet B - Drawer 4",
+      "notes": "See SKF-6206-2RS note above."
+    },
+    {
+      "partNumber": "HA-32-0154",
+      "description": "Coolant Pump Seal Kit",
+      "quantity": 1,
+      "location": "Parts Cabinet A - Drawer 1",
+      "notes": ""
+    },
+    {
+      "partNumber": "24V-RELA-10A",
+      "description": "24VDC Control Relay (10A)",
+      "quantity": 4,
+      "location": "Electrical Cabinet - Relay Rack",
+      "notes": "Check for contact welding if machine fails to e-stop cleanly."
+    },
+    {
+      "partNumber": "HA-910-2233",
+      "description": "Tool Changer Cam Follower",
+      "quantity": 1,
+      "location": "Parts Cabinet C - Shelf 2",
+      "notes": "Grease with Mobilith SHC 220 every 500 hours."
+    }
+  ],
+
+  "pinouts": [
+    {
+      "connectorId": "J1",
+      "connectorName": "Main Control Panel Input",
+      "description": "24VDC I/O connector from operator panel to main controller board",
+      "pins": [
+        {
+          "number": 1,
+          "signal": "V+",
+          "color": "Red",
+          "voltage": "24VDC",
+          "description": "Panel power supply positive"
+        },
+        {
+          "number": 2,
+          "signal": "GND",
+          "color": "Black",
+          "voltage": "0V",
+          "description": "Common ground"
+        },
+        {
+          "number": 3,
+          "signal": "E-STOP",
+          "color": "Yellow",
+          "voltage": "24VDC (active high)",
+          "description": "Emergency stop signal. Goes LOW when e-stop is pressed."
+        },
+        {
+          "number": 4,
+          "signal": "CYCLE_START",
+          "color": "Green",
+          "voltage": "24VDC (momentary)",
+          "description": "Cycle start pushbutton input"
+        },
+        {
+          "number": 5,
+          "signal": "FEED_HOLD",
+          "color": "Orange",
+          "voltage": "24VDC (momentary)",
+          "description": "Feed hold pushbutton input"
+        },
+        {
+          "number": 6,
+          "signal": "DOOR_SW",
+          "color": "White",
+          "voltage": "24VDC (active high)",
+          "description": "Enclosure door safety switch. HIGH = door closed."
+        }
+      ]
+    },
+    {
+      "connectorId": "J4",
+      "connectorName": "Spindle Drive Interface",
+      "description": "Analog and digital signals between CNC controller and VFD",
+      "pins": [
+        {
+          "number": 1,
+          "signal": "SPD_REF+",
+          "color": "White",
+          "voltage": "0–10VDC analog",
+          "description": "Spindle speed reference signal positive"
+        },
+        {
+          "number": 2,
+          "signal": "SPD_REF-",
+          "color": "White/Black",
+          "voltage": "0V",
+          "description": "Spindle speed reference signal return"
+        },
+        {
+          "number": 3,
+          "signal": "FWD",
+          "color": "Blue",
+          "voltage": "24VDC",
+          "description": "Forward run command to VFD"
+        },
+        {
+          "number": 4,
+          "signal": "REV",
+          "color": "Violet",
+          "voltage": "24VDC",
+          "description": "Reverse run command to VFD"
+        },
+        {
+          "number": 5,
+          "signal": "FAULT_OUT",
+          "color": "Red",
+          "voltage": "24VDC (open-collector)",
+          "description": "VFD fault output — goes LOW on fault condition"
+        }
+      ]
+    }
+  ],
+
+  "documents": [
+    {
+      "title": "Operator's Manual",
+      "file": "/pdfs/cnc-mill-1/operators-manual.pdf",
+      "category": "Manual",
+      "description": "Full Haas VF-2 operator and programming manual"
+    },
+    {
+      "title": "Electrical Schematics",
+      "file": "/pdfs/cnc-mill-1/electrical-schematics.pdf",
+      "category": "Schematic",
+      "description": "Full machine electrical drawings including panel layout and wiring diagrams"
+    },
+    {
+      "title": "Lubrication Guide",
+      "file": "/pdfs/cnc-mill-1/lubrication-guide.pdf",
+      "category": "Lubrication",
+      "description": "Scheduled lubrication points, intervals, and approved lubricants"
+    },
+    {
+      "title": "Spindle Rebuild Procedure",
+      "file": "/pdfs/cnc-mill-1/spindle-rebuild.pdf",
+      "category": "Service",
+      "description": "Step-by-step spindle disassembly, inspection, bearing replacement, and reassembly"
+    }
+  ],
+
+  "troubleshooting": [
+    {
+      "id": "spindle-wont-start",
+      "symptom": "Spindle will not start",
+      "category": "Electrical",
+      "steps": [
+        "Verify the enclosure door is fully closed and the door safety switch (J1 Pin 6) reads 24VDC.",
+        "Check that no active alarms are displayed on the control panel. Clear alarms before retrying.",
+        "Confirm e-stop is fully released — check J1 Pin 3 reads 24VDC at the controller board connector.",
+        "Navigate to the VFD keypad and check for a fault code. Compare fault code against the VFD fault table in the Electrical Schematics (see Related Document).",
+        "Check the FAULT_OUT line on J4 Pin 5. If LOW, the VFD has an active fault — cycle VFD power after resolving the root cause.",
+        "If no VFD fault exists, verify the FWD command on J4 Pin 3 is present when a spindle start command is issued.",
+        "If FWD signal is absent, suspect the main controller board output — contact supervisor before further disassembly."
+      ],
+      "relatedDocument": {
+        "file": "/pdfs/cnc-mill-1/electrical-schematics.pdf",
+        "page": 14
+      }
+    },
+    {
+      "id": "excessive-vibration",
+      "symptom": "Excessive vibration at the spindle during cutting",
+      "category": "Mechanical",
+      "steps": [
+        "Stop the machine immediately. Do not continue cutting.",
+        "Check tool holder for damage, contamination, or improper seating in the spindle taper.",
+        "Inspect the cutting tool for chips, breakage, or runout greater than 0.001 inches.",
+        "Check spindle drive belt (HA-930-8765) tension and condition. A loose or cracked belt will cause vibration at certain RPM ranges.",
+        "Run the spindle at low RPM (500–1000) with no tool loaded. If vibration persists, suspect spindle bearing wear.",
+        "Check lubrication at all listed spindle lubrication points — refer to lubrication guide.",
+        "If spindle bearing wear is suspected, tag machine out of service and notify the maintenance supervisor."
+      ],
+      "relatedDocument": {
+        "file": "/pdfs/cnc-mill-1/spindle-rebuild.pdf",
+        "page": 3
+      }
+    },
+    {
+      "id": "coolant-not-flowing",
+      "symptom": "Coolant pump runs but no coolant flow at nozzle",
+      "category": "Mechanical",
+      "steps": [
+        "Check the coolant tank level. Minimum level is the LOW mark on the side of the reservoir.",
+        "Inspect the coolant pump inlet screen for chips or debris — clean with a brush if clogged.",
+        "Check all coolant lines for kinks, collapsed hoses, or loose fittings.",
+        "Inspect the coolant nozzle for blockage. Use compressed air to clear.",
+        "If pump runs but flow is very weak, the pump seal may be failing — check for coolant in the sump area around the pump housing.",
+        "If pump seal failure is suspected, replace using the Coolant Pump Seal Kit (HA-32-0154). See Operator's Manual, Chapter 9 for procedure."
+      ],
+      "relatedDocument": {
+        "file": "/pdfs/cnc-mill-1/operators-manual.pdf",
+        "page": 147
+      }
+    },
+    {
+      "id": "tool-changer-fault",
+      "symptom": "Tool changer faults mid-cycle or carousel does not index",
+      "category": "Mechanical",
+      "steps": [
+        "Clear all alarms from the control panel.",
+        "Manually jog the tool changer carousel using the pendant to check for binding or resistance.",
+        "Inspect the cam follower (HA-910-2233) for wear, flat spots, or dry lubrication. Apply Mobilith SHC 220 if dry.",
+        "Check the tool changer home proximity sensor — verify it triggers cleanly at the home position.",
+        "Inspect for any chips or foreign debris inside the carousel housing.",
+        "Run a carousel-only test cycle at low speed and observe the motion. Note at which pocket position the fault recurs.",
+        "If fault consistently occurs at the same pocket, inspect that pocket's retention mechanism for damage."
+      ],
+      "relatedDocument": {
+        "file": "/pdfs/cnc-mill-1/operators-manual.pdf",
+        "page": 203
+      }
+    }
+  ]
+}

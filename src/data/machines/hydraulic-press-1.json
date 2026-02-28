@@ -1,0 +1,172 @@
+{
+  "id": "hydraulic-press-1",
+  "name": "Hydraulic Press #1",
+  "model": "HP-50T",
+  "manufacturer": "Greenerd Press",
+  "serialNumber": "GP-20191045",
+  "location": "Bay 1 - South Wall",
+  "image": "",
+  "notes": "50-ton capacity H-frame press. Hydraulic oil last changed March 2024 — due again March 2026. Check accumulator pre-charge pressure quarterly (target 1500 PSI nitrogen pre-charge).",
+
+  "parts": [
+    {
+      "partNumber": "GP-HYD-SEAL-01",
+      "description": "Main Cylinder Seal Kit",
+      "quantity": 1,
+      "location": "Parts Cabinet A - Shelf 1",
+      "notes": "Replace if any weeping observed around cylinder rod."
+    },
+    {
+      "partNumber": "GP-HYD-FILTER-10",
+      "description": "Hydraulic Return Line Filter Element",
+      "quantity": 2,
+      "location": "Parts Cabinet A - Shelf 1",
+      "notes": "Replace every 500 operating hours or when bypass indicator pops."
+    },
+    {
+      "partNumber": "ISO-68-HYD-OIL",
+      "description": "Hydraulic Oil ISO 68 (1 gallon)",
+      "quantity": 6,
+      "location": "Fluid Storage Room",
+      "notes": "Full system capacity is 15 gallons."
+    },
+    {
+      "partNumber": "GP-PUMP-COUPLER",
+      "description": "Pump-to-Motor Jaw Coupling",
+      "quantity": 1,
+      "location": "Parts Cabinet A - Shelf 2",
+      "notes": "Inspect spider insert quarterly."
+    },
+    {
+      "partNumber": "GP-PRES-GAUGE-5K",
+      "description": "0–5000 PSI Glycerin-Filled Gauge",
+      "quantity": 1,
+      "location": "Parts Cabinet A - Shelf 2",
+      "notes": "Replace if needle sticks or lens is cracked."
+    }
+  ],
+
+  "pinouts": [
+    {
+      "connectorId": "TB1",
+      "connectorName": "Motor Starter Control Terminals",
+      "description": "24VAC control wiring to the hydraulic pump motor starter",
+      "pins": [
+        {
+          "number": 1,
+          "signal": "L1-CTRL",
+          "color": "Black",
+          "voltage": "120VAC",
+          "description": "Control circuit hot leg from transformer secondary"
+        },
+        {
+          "number": 2,
+          "signal": "NEUTRAL",
+          "color": "White",
+          "voltage": "0V",
+          "description": "Control circuit neutral"
+        },
+        {
+          "number": 3,
+          "signal": "MOTOR-RUN",
+          "color": "Red",
+          "voltage": "120VAC coil",
+          "description": "Motor contactor coil energize — HIGH = motor running"
+        },
+        {
+          "number": 4,
+          "signal": "OL-NC",
+          "color": "Orange",
+          "voltage": "120VAC",
+          "description": "Overload relay normally-closed contact. Opens on overload trip."
+        }
+      ]
+    },
+    {
+      "connectorId": "J2",
+      "connectorName": "Pressure Limit Switch",
+      "description": "High-pressure limit switch wired into control circuit",
+      "pins": [
+        {
+          "number": 1,
+          "signal": "COM",
+          "color": "Blue",
+          "voltage": "120VAC",
+          "description": "Common terminal"
+        },
+        {
+          "number": 2,
+          "signal": "NC",
+          "color": "Yellow",
+          "voltage": "120VAC",
+          "description": "Normally closed — opens at 4500 PSI to unload pump"
+        },
+        {
+          "number": 3,
+          "signal": "NO",
+          "color": "Green",
+          "voltage": "0V (normally)",
+          "description": "Normally open — closes at 4500 PSI"
+        }
+      ]
+    }
+  ],
+
+  "documents": [
+    {
+      "title": "Operator and Maintenance Manual",
+      "file": "/pdfs/hydraulic-press-1/operator-manual.pdf",
+      "category": "Manual",
+      "description": "Full Greenerd HP-50T operation, maintenance, and parts manual"
+    },
+    {
+      "title": "Hydraulic Schematic",
+      "file": "/pdfs/hydraulic-press-1/hydraulic-schematic.pdf",
+      "category": "Schematic",
+      "description": "Complete hydraulic circuit diagram including valve block layout"
+    },
+    {
+      "title": "Electrical Schematic",
+      "file": "/pdfs/hydraulic-press-1/electrical-schematic.pdf",
+      "category": "Schematic",
+      "description": "Electrical panel wiring, motor starter, and control circuit diagrams"
+    }
+  ],
+
+  "troubleshooting": [
+    {
+      "id": "no-pressure-buildup",
+      "symptom": "System will not build pressure — pump runs but pressure stays low",
+      "category": "Hydraulic",
+      "steps": [
+        "Check hydraulic oil level in the reservoir. Low oil will cause pump cavitation and inability to build pressure.",
+        "Check the return filter bypass indicator. A bypassed filter severely restricts flow.",
+        "Verify the directional control valve is shifting fully — a partial shift will bypass oil back to tank.",
+        "Check the system relief valve setting (should be set to 3500 PSI max). If the relief valve is stuck open, pressure cannot build.",
+        "Inspect pump coupling for wear or breakage — a broken coupling spider will cause the pump shaft to spin without engaging.",
+        "If all above check out, the pump may have worn internal components. Check for excessive heat at the pump body during operation."
+      ],
+      "relatedDocument": {
+        "file": "/pdfs/hydraulic-press-1/hydraulic-schematic.pdf",
+        "page": 5
+      }
+    },
+    {
+      "id": "motor-trips-overload",
+      "symptom": "Motor trips overload relay during operation",
+      "category": "Electrical",
+      "steps": [
+        "Allow motor to cool fully (minimum 15 minutes) before resetting the overload.",
+        "Check the overload relay trip current setting — it should be set to 110% of motor FLA (Full Load Amperes from nameplate).",
+        "Check for excessive system pressure — if the relief valve is set too high, the pump motor works harder than designed.",
+        "Inspect the motor ventilation for blockage — a clogged motor fan causes thermal overload even at rated current.",
+        "Measure actual motor current with a clamp meter during operation and compare to nameplate FLA.",
+        "If current is normal but overload still trips, the overload relay may be faulty — replace with matching amperage range unit."
+      ],
+      "relatedDocument": {
+        "file": "/pdfs/hydraulic-press-1/electrical-schematic.pdf",
+        "page": 3
+      }
+    }
+  ]
+}

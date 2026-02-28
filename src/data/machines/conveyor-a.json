@@ -1,0 +1,158 @@
+{
+  "id": "conveyor-a",
+  "name": "Conveyor Line A",
+  "model": "Series 250 Belt Conveyor",
+  "manufacturer": "Hytrol",
+  "serialNumber": "HY-2021-0087",
+  "location": "Assembly Floor - Line A",
+  "image": "",
+  "notes": "Main assembly line conveyor. Belt speed range: 10–60 FPM via VFD. Belt last replaced August 2023 — inspect monthly for edge fraying. Do not exceed 200 lb/ft distributed load.",
+
+  "parts": [
+    {
+      "partNumber": "HYT-BELT-250-100",
+      "description": "Conveyor Belt (100 ft roll, 24\" wide)",
+      "quantity": 1,
+      "location": "Warehouse - Bay 12",
+      "notes": "Full belt replacement. Keep one roll in stock at all times."
+    },
+    {
+      "partNumber": "HYT-ROLLER-24-STD",
+      "description": "Carrier Roller (24\" standard)",
+      "quantity": 12,
+      "location": "Parts Cabinet D - Shelf 3",
+      "notes": "Replace if noisy or rough when spun by hand."
+    },
+    {
+      "partNumber": "HYT-TAKE-UP-BRG",
+      "description": "Take-Up Bearing Assembly",
+      "quantity": 2,
+      "location": "Parts Cabinet D - Shelf 2",
+      "notes": "Pillow block style. Grease fitting on top — grease every 90 days."
+    },
+    {
+      "partNumber": "AB-PF525-2P5",
+      "description": "Allen-Bradley PowerFlex 525 VFD (2.5 HP)",
+      "quantity": 1,
+      "location": "Electrical Panel - Line A",
+      "notes": "Parameter backup file stored on USB in electrical cabinet. Restore from backup if drive is replaced."
+    }
+  ],
+
+  "pinouts": [
+    {
+      "connectorId": "VFD-TB",
+      "connectorName": "VFD Control Terminal Block",
+      "description": "Allen-Bradley PowerFlex 525 control terminals",
+      "pins": [
+        {
+          "number": "01",
+          "signal": "+24V",
+          "color": "Red",
+          "voltage": "24VDC",
+          "description": "VFD internal 24V supply output — use for digital inputs only"
+        },
+        {
+          "number": "02",
+          "signal": "DI-COM",
+          "color": "Black",
+          "voltage": "0V",
+          "description": "Digital input common (0V reference)"
+        },
+        {
+          "number": "03",
+          "signal": "DI1 - RUN",
+          "color": "Green",
+          "voltage": "24VDC",
+          "description": "Digital input 1 — Run forward command"
+        },
+        {
+          "number": "04",
+          "signal": "DI2 - STOP",
+          "color": "Yellow",
+          "voltage": "24VDC (NC wired)",
+          "description": "Digital input 2 — Stop command (normally closed circuit)"
+        },
+        {
+          "number": "05",
+          "signal": "DI3 - FAULT-CLR",
+          "color": "White",
+          "voltage": "24VDC (momentary)",
+          "description": "Digital input 3 — Fault clear (momentary pulse clears active fault)"
+        },
+        {
+          "number": "11",
+          "signal": "AIN+",
+          "color": "Blue",
+          "voltage": "0–10VDC analog",
+          "description": "Analog speed reference input positive"
+        },
+        {
+          "number": "12",
+          "signal": "AIN-",
+          "color": "Blue/White",
+          "voltage": "0V",
+          "description": "Analog speed reference input return"
+        }
+      ]
+    }
+  ],
+
+  "documents": [
+    {
+      "title": "Hytrol Conveyor Installation & Maintenance Manual",
+      "file": "/pdfs/conveyor-a/hytrol-maintenance-manual.pdf",
+      "category": "Manual",
+      "description": "Belt tensioning, roller replacement, drive alignment, and maintenance schedule"
+    },
+    {
+      "title": "PowerFlex 525 VFD User Manual",
+      "file": "/pdfs/conveyor-a/pf525-user-manual.pdf",
+      "category": "Manual",
+      "description": "Full Allen-Bradley PowerFlex 525 programming, parameters, and fault codes"
+    },
+    {
+      "title": "Electrical Panel Drawing",
+      "file": "/pdfs/conveyor-a/electrical-panel-drawing.pdf",
+      "category": "Schematic",
+      "description": "Line A conveyor electrical panel layout and wiring"
+    }
+  ],
+
+  "troubleshooting": [
+    {
+      "id": "belt-tracking-off",
+      "symptom": "Belt tracks to one side and rides against the frame",
+      "category": "Mechanical",
+      "steps": [
+        "Stop the conveyor. Never try to adjust belt tracking while the belt is running under load.",
+        "Check that the head pulley and tail pulley are both square to the conveyor frame — use a tape measure to compare drive side and operator side measurements.",
+        "Inspect the take-up assembly. Unequal tension on left vs. right will cause the belt to walk toward the tighter side.",
+        "Adjust the take-up bearing on the side the belt is walking TOWARD — tighten that side slightly to push the belt back to center.",
+        "Make small adjustments (1/4 turn at a time) then jog the conveyor to observe the effect before further adjustment.",
+        "Check all carrier rollers for free spin — a seized roller will cause the belt to drag and track off."
+      ],
+      "relatedDocument": {
+        "file": "/pdfs/conveyor-a/hytrol-maintenance-manual.pdf",
+        "page": 22
+      }
+    },
+    {
+      "id": "vfd-fault-f12",
+      "symptom": "VFD displays Fault F12 (Overcurrent) and shuts down",
+      "category": "Electrical",
+      "steps": [
+        "Clear the fault by momentarily energizing DI3 (Fault Clear input) or using the VFD keypad.",
+        "Check for any mechanical binding in the conveyor — rotate the belt by hand to confirm it moves freely.",
+        "Verify belt tension is not excessive — overtightened belt greatly increases motor load.",
+        "Check that the acceleration ramp time parameter (P053) is not set too short. A rapid acceleration ramp causes high inrush current. Increase ramp time to 3–5 seconds.",
+        "Check motor wiring connections at the VFD output terminals (T1, T2, T3) for looseness or corrosion.",
+        "If F12 persists at no-load, the VFD current limit may need adjustment or the motor may have a winding fault — measure motor winding resistance phase-to-phase (should be equal within 5%)."
+      ],
+      "relatedDocument": {
+        "file": "/pdfs/conveyor-a/pf525-user-manual.pdf",
+        "page": 87
+      }
+    }
+  ]
+}
